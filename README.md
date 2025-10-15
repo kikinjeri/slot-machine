@@ -2,10 +2,23 @@
 
 A **modern, responsive slot machine** built entirely with **HTML, CSS, and JavaScript**.
 
+# 🎰 Slot Machine Web App
+
+A **modern, responsive slot machine** built entirely with **HTML, CSS, and JavaScript**.  
+Sleek, mobile-friendly, and optimized for SEO — spin to test your luck!
+
+---
+
 ## 🖼️ Screenshot
 
-> `./assets/slot-machine.png`  
->
+> *(Add your screenshot here — e.g., `screenshot.png`)*  
+> You can include one by saving an image inside the project root and linking it below:
+
+```md
+![Slot Machine Screenshot](./images/slot-machine.png)
+
+
+
 
 
 
