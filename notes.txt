@@ -1,0 +1,7 @@
+Deposit money
+Determine number of lines to bet
+Collect bet amount
+Spin slot machine
+Check if user won
+Give user earnings
+play again

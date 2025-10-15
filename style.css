@@ -1,0 +1,174 @@
+/* 🎨 Modern, Sleek, Responsive Slot Machine Design */
+
+:root {
+  --bg: #0b0c10;
+  --card: #1f2833;
+  --accent: #66fcf1;
+  --text: #c5c6c7;
+  --win: #00b894;
+  --lose: #d63031;
+  --font-main: "Poppins", sans-serif;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-main);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  background: var(--card);
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  padding: 2rem;
+  width: 90%;
+  max-width: 600px;
+  text-align: center;
+}
+
+.header h1 {
+  color: var(--accent);
+  font-size: 2rem;
+  margin-bottom: 0.3rem;
+}
+
+.subtitle {
+  font-size: 1rem;
+  opacity: 0.8;
+  margin-bottom: 1.5rem;
+}
+
+.balance-section p {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  flex: 1;
+}
+
+label {
+  margin-bottom: 0.3rem;
+  font-size: 0.9rem;
+  color: var(--accent);
+}
+
+input {
+  padding: 0.4rem;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  background: #2c3441;
+  color: white;
+  text-align: center;
+}
+
+.btn {
+  flex: 1;
+  background: var(--accent);
+  color: var(--bg);
+  font-weight: 600;
+  padding: 0.7rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background: #45a29e;
+  transform: translateY(-2px);
+}
+
+.slot-machine {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.reel {
+  background: #2c3441;
+  border-radius: 12px;
+  padding: 0.5rem;
+  min-width: 80px;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.6);
+}
+
+.symbol {
+  font-size: 2rem;
+  margin: 0.2rem 0;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.4s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.result {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 0.5rem;
+  transition: color 0.4s ease;
+}
+
+.result.win {
+  color: var(--win);
+}
+
+.result.lose {
+  color: var(--lose);
+}
+
+.footer {
+  font-size: 0.85rem;
+  margin-top: 1.5rem;
+  opacity: 0.6;
+}
+
+/* 🌍 Responsive Layout */
+@media (max-width: 600px) {
+  .slot-machine {
+    gap: 0.5rem;
+  }
+
+  .symbol {
+    font-size: 1.5rem;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .container {
+    padding: 1.2rem;
+  }
+}
+     
