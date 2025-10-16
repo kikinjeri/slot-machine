@@ -5,13 +5,19 @@ A **modern, responsive slot machine** built entirely with **HTML, CSS, and JavaS
 Sleek, mobile-friendly, and optimized for SEO — spin to test your luck!
 
 ---
-
 ## 🖼️ Screenshot
 
 ![Slot Machine Screenshot](/images/screenshot.png)
 
 
 ---
+
+
+
+---
+
+
+
 
 ## ✨ Features
 
@@ -82,24 +88,8 @@ These sounds will automatically play during the game.
 
 ## 📜 License
 
-**MIT License** © 2025 — Built by *Mwihaki Githii / Canada-AI*  
+**MIT License** © 2025 — Built by *Mwihaki Githii*  
 
 ---
 
-### 🧠 Pro Tip
 
-If your image doesn’t show, verify it by visiting this link directly in your browser:
-```
-https://raw.githubusercontent.com/kikinjeri/slot-machine/main/images/screenshot.png
-```
-
-If that works, GitHub will automatically display it here.
-
----
-
-### 🪄 Placeholder (Optional Backup)
-
-If your actual screenshot isn’t ready yet, you can temporarily use this:
-```md
-![Slot Machine Screenshot Placeholder](https://via.placeholder.com/900x500/1f2833/66fcf1?text=🎰+Slot+Machine+Preview)
-```

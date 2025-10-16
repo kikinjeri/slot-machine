@@ -1,71 +1,100 @@
-/* 🎰 Slot Machine Game - Web Version
-   Fixed: UI/Logic mismatch (e.g., DDD row now counts as a win)
-   Added: Animations, color feedback, sound support, and clean structure
-*/
-
+// 🎰 Slot Machine Game Script
 const SYMBOLS_COUNT = { A: 2, B: 4, C: 6, D: 8 };
 const SYMBOL_VALUES = { A: 5, B: 4, C: 3, D: 2 };
 const ROWS = 3;
 const COLS = 3;
 
 let balance = 0;
-let lines = 1;
 let bet = 0;
 
-// 🎵 Optional sounds
+// Optional sounds
 const spinSound = new Audio("assets/spin.mp3");
 const winSound = new Audio("assets/win.mp3");
 const loseSound = new Audio("assets/lose.mp3");
 
 document.addEventListener("DOMContentLoaded", () => {
   const balanceEl = document.getElementById("balance");
-  const linesEl = document.getElementById("lines");
   const betEl = document.getElementById("bet");
   const resultEl = document.getElementById("result");
   const spinBtn = document.getElementById("spin-btn");
+  const depositBtn = document.getElementById("deposit-btn");
+  const playAgainBtn = document.getElementById("play-again-btn");
+  const depositInput = document.getElementById("deposit");
 
-  balance = 100;
   balanceEl.textContent = balance.toFixed(2);
+  playAgainBtn.style.display = "none";
+
+  depositBtn.addEventListener("click", () => {
+    const depositAmount = parseFloat(depositInput.value);
+
+    if (isNaN(depositAmount) || depositAmount <= 0) {
+      resultEl.textContent = "Please enter a valid deposit amount.";
+      resultEl.className = "lose";
+      return;
+    }
+
+    if (depositAmount > 500) {
+      resultEl.textContent = "Deposit limit is $500 maximum.";
+      resultEl.className = "lose";
+      return;
+    }
+
+    balance += depositAmount;
+    balanceEl.textContent = balance.toFixed(2);
+    depositInput.value = "";
+    resultEl.textContent = `✅ Deposited $${depositAmount.toFixed(2)} successfully!`;
+    resultEl.className = "win";
+  });
 
   spinBtn.addEventListener("click", () => {
-    lines = parseInt(linesEl.value);
     bet = parseFloat(betEl.value);
-
-    const totalBet = bet * lines;
 
     if (isNaN(bet) || bet <= 0) {
       resultEl.textContent = "Please enter a valid bet.";
+      resultEl.className = "lose";
       return;
     }
 
-    if (totalBet > balance) {
+    if (bet > balance) {
       resultEl.textContent = "Insufficient balance!";
+      resultEl.className = "lose";
       return;
     }
 
+    spinBtn.disabled = true;
     spinSound.play().catch(() => {});
-    balance -= totalBet;
+    balance -= bet;
     balanceEl.textContent = balance.toFixed(2);
 
     const reels = spin();
     const rows = transpose(reels);
     displaySlots(rows);
 
-    const winnings = getWinnings(rows, bet, lines);
+    const winnings = getWinnings(rows, bet);
     balance += winnings;
     balanceEl.textContent = balance.toFixed(2);
 
-    if (winnings > 0) {
-      winSound.play().catch(() => {});
-      resultEl.textContent = `🎉 You won $${winnings}!`;
-      resultEl.classList.add("win");
-      resultEl.classList.remove("lose");
-    } else {
-      loseSound.play().catch(() => {});
-      resultEl.textContent = "No win this time. Try again!";
-      resultEl.classList.add("lose");
-      resultEl.classList.remove("win");
-    }
+    setTimeout(() => {
+      if (winnings > 0) {
+        winSound.play().catch(() => {});
+        resultEl.textContent = `🎉 You won $${winnings.toFixed(2)}!`;
+        resultEl.className = "win";
+      } else {
+        loseSound.play().catch(() => {});
+        resultEl.textContent = "No win this time. Try again!";
+        resultEl.className = "lose";
+      }
+
+      playAgainBtn.style.display = "inline-block";
+      spinBtn.style.display = "none";
+      spinBtn.disabled = false;
+    }, 800);
+  });
+
+  playAgainBtn.addEventListener("click", () => {
+    resultEl.textContent = "";
+    playAgainBtn.style.display = "none";
+    spinBtn.style.display = "inline-block";
   });
 });
 
@@ -100,15 +129,13 @@ function transpose(reels) {
   return rows;
 }
 
-function getWinnings(rows, bet, lines) {
+function getWinnings(rows, bet) {
   let winnings = 0;
-
-  for (let row = 0; row < lines; row++) {
+  for (let row = 0; row < ROWS; row++) {
     const symbols = rows[row];
     const allSame = symbols.every((s) => s === symbols[0]);
     if (allSame) winnings += bet * SYMBOL_VALUES[symbols[0]];
   }
-
   return winnings;
 }
 
