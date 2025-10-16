@@ -11,11 +11,8 @@ Sleek, mobile-friendly, and optimized for SEO — spin to test your luck!
 ![Slot Machine Screenshot](/images/screenshot.png)
 
 
-<<<<<<< HEAD
 ---
 
-=======
->>>>>>> 96382fd (update README with screenshot)
 ## ✨ Features
 
 - 🎨 Sleek, modern design with CSS animations  
