@@ -1,3 +1,4 @@
+
 # 🎰 Slot Machine Web App
 
 A **modern, responsive slot machine** built entirely with **HTML, CSS, and JavaScript**.  
@@ -7,20 +8,8 @@ Sleek, mobile-friendly, and optimized for SEO — spin to test your luck!
 
 ## 🖼️ Screenshot
 
-![Slot Machine Screenshot](images/screenshot.png)
+![Slot Machine Screenshot](/images/screenshot.png)
 
-> 💡 If the image above doesn’t appear, make sure your screenshot file is named **`screenshot.png`**  
-> and located inside an **`images/`** folder at your project root.  
-> Example:
-> ```
-> /index.html  
-> /app.js  
-> /style.css  
-> /images/screenshot.png  
-> ```
-
-> If you haven’t added it yet, here’s a temporary placeholder you can use instead:
-> ![Slot Machine Screenshot Placeholder](https://via.placeholder.com/900x500/1f2833/66fcf1?text=🎰+Slot+Machine+Game+Preview)
 
 ---
 
@@ -37,7 +26,10 @@ Sleek, mobile-friendly, and optimized for SEO — spin to test your luck!
 
 ## 🚀 Setup
 
-1. **Clone or download** this repository.  
+1. **Clone or download** this repository:  
+   ```bash
+   git clone https://github.com/kikinjeri/slot-machine.git
+   ```
 2. Open `index.html` directly in your browser.  
 3. Adjust **Lines** and **Bet per Line**.  
 4. Press **SPIN 🎡** to play and test your luck!
@@ -54,3 +46,60 @@ Sleek, mobile-friendly, and optimized for SEO — spin to test your luck!
 
 ## 📂 Project Structure
 
+```
+├── index.html
+├── style.css
+├── app.js
+├── README.md
+└── images/
+    └── screenshot.png
+```
+
+---
+
+## 🧩 Optional Assets
+
+If you’d like to add sounds, create an `/assets` folder in your project root and include:
+
+```
+assets/
+  ├── spin.mp3
+  ├── win.mp3
+  └── lose.mp3
+```
+
+These sounds will automatically play during the game.
+
+---
+
+## 🧠 SEO & Accessibility Highlights
+
+- ✅ Meta tags optimized for keywords like “JavaScript slot machine,” “web game,” and “casino demo”  
+- ✅ Responsive design for all devices (mobile, tablet, desktop)  
+- ✅ Accessible colors, ARIA labels, and readable typography  
+
+---
+
+## 📜 License
+
+**MIT License** © 2025 — Built by *Mwihaki Githii / Canada-AI*  
+
+---
+
+### 🧠 Pro Tip
+
+If your image doesn’t show, verify it by visiting this link directly in your browser:
+```
+https://raw.githubusercontent.com/kikinjeri/slot-machine/main/images/screenshot.png
+```
+
+If that works, GitHub will automatically display it here.
+
+---
+
+### 🪄 Placeholder (Optional Backup)
+
+If your actual screenshot isn’t ready yet, you can temporarily use this:
+```md
+![Slot Machine Screenshot Placeholder](https://via.placeholder.com/900x500/1f2833/66fcf1?text=🎰+Slot+Machine+Preview)
+```
