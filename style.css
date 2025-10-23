@@ -1,24 +1,20 @@
 /* 🎨 Modern, Sleek, Responsive Slot Machine Design */
 
 :root {
-  --bg: #0f1115;
-  --primary: #ffcc00;
-  --accent: #00ffd0;
-  --win: #6aff6a;
-  --lose: #ff6a6a;
-  --text: #ffffff;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: "Poppins", sans-serif;
+  --bg: #0b0c10;
+  --card: #1f2833;
+  --accent: #66fcf1;
+  --text: #c5c6c7;
+  --win: #00b894;
+  --lose: #d63031;
+  --font-main: "Poppins", sans-serif;
 }
 
 body {
+  margin: 0;
   background: var(--bg);
   color: var(--text);
+  font-family: var(--font-main);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,20 +22,25 @@ body {
 }
 
 .container {
-  width: 90%;
-  max-width: 500px;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--card);
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
   padding: 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+  width: 90%;
+  max-width: 600px;
+  text-align: center;
 }
 
-h1 {
-  color: var(--primary);
+.header h1 {
+  color: var(--accent);
   font-size: 2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+.subtitle {
+  font-size: 1rem;
+  opacity: 0.8;
+  margin-bottom: 1.5rem;
 }
 
 .balance-section p {
@@ -47,197 +48,127 @@ h1 {
   margin-bottom: 1rem;
 }
 
-.deposit-section,
-.bet-section {
+.controls {
   display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
   flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  flex: 1;
+}
+
+label {
+  margin-bottom: 0.3rem;
+  font-size: 0.9rem;
+  color: var(--accent);
 }
 
 input {
-  padding: 0.5rem;
-  border-radius: 5px;
-  border: 1px solid var(--accent);
-  width: 60%;
+  padding: 0.4rem;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  background: #2c3441;
+  color: white;
   text-align: center;
-  background: #1a1a1d;
-  color: var(--text);
 }
 
-button {
+.btn {
+  flex: 1;
   background: var(--accent);
+  color: var(--bg);
+  font-weight: 600;
+  padding: 0.7rem;
   border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
+  border-radius: 10px;
   cursor: pointer;
-  color: #000;
-  font-weight: bold;
   transition: all 0.3s ease;
 }
 
-button:hover {
-  background: var(--primary);
-  transform: scale(1.05);
-}
-
-#play-again-btn {
-  display: none;
-  background: var(--primary);
+.btn:hover {
+  background: #45a29e;
+  transform: translateY(-2px);
 }
 
 .slot-machine {
   display: flex;
   justify-content: center;
   gap: 1rem;
-  margin: 2rem 0;
+  margin: 1.5rem 0;
 }
 
 .reel {
-  background: #1a1a1d;
-  border: 2px solid var(--accent);
-  border-radius: 10px;
-  width: 70px;
-  height: 150px;
+  background: #2c3441;
+  border-radius: 12px;
+  padding: 0.5rem;
+  min-width: 80px;
+  min-height: 120px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  overflow: hidden;
-  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+  justify-content: center;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.6);
 }
 
 .symbol {
   font-size: 2rem;
-  color: var(--primary);
-  animation: spinDrop 0.6s ease-in-out forwards;
+  margin: 0.2rem 0;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.4s ease forwards;
 }
 
-@keyframes spinDrop {
-  from {
-    transform: translateY(-40px);
-    opacity: 0;
-  }
+@keyframes fadeInUp {
   to {
-    transform: translateY(0);
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
-.message {
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
-  min-height: 1.5rem;
+.result {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 0.5rem;
+  transition: color 0.4s ease;
 }
 
-.win {
+.result.win {
   color: var(--win);
-  text-shadow: 0 0 10px var(--win);
 }
 
-.lose {
+.result.lose {
   color: var(--lose);
-  text-shadow: 0 0 10px var(--lose);
 }
 
-footer {
-  font-size: 0.8rem;
-  opacity: 0.7;
-  margin-top: 1rem;
+.footer {
+  font-size: 0.85rem;
+  margin-top: 1.5rem;
+  opacity: 0.6;
 }
 
-/* 📱 Responsive */
-@media (max-width: 500px) {
-  .reel {
-    width: 60px;
-    height: 120px;
+/* 🌍 Responsive Layout */
+@media (max-width: 600px) {
+  .slot-machine {
+    gap: 0.5rem;
   }
 
   .symbol {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
   }
 
-  button,
-  input {
+  .btn {
     width: 100%;
   }
-}
-/* --- Paytable Modal Styles --- */
 
-/* The Modal (hidden by default) */
-.modal {
-    display: none; 
-    position: fixed; 
-    z-index: 1000; /* High z-index to ensure it is on top */
-    left: 0;
-    top: 0;
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; 
-    background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+  .container {
+    padding: 1.2rem;
+  }
 }
-
-/* Modal Content/Box */
-.modal-content {
-    background-color: #fefefe;
-    margin: 10% auto; /* 10% from the top and centered */
-    padding: 20px;
-    border: 3px solid #ffd700; /* Gold border for a casino feel */
-    border-radius: 10px;
-    width: 80%; /* Could be adjusted */
-    max-width: 500px; /* Max size */
-    color: #333;
-    animation: fadeIn 0.3s ease-out;
-}
-
-/* The Close Button */
-.close-btn {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close-btn:hover,
-.close-btn:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-/* Paytable specific styling */
-.payout-table-container, .calculation-example {
-    margin: 15px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    background-color: #eee;
-}
-
-.modal-content table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.modal-content th, .modal-content td {
-    padding: 8px;
-    text-align: center;
-    border-bottom: 1px solid #ddd;
-}
-
-.modal-content th {
-    background-color: #555;
-    color: white;
-}
-
-.modal-content .win {
-    color: #28a745;
-    font-weight: bold;
-}
-
-/* Optional: Fade-in animation */
-@keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
-}
+     
