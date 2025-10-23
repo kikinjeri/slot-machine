@@ -163,3 +163,81 @@ footer {
     width: 100%;
   }
 }
+/* --- Paytable Modal Styles --- */
+
+/* The Modal (hidden by default) */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; /* High z-index to ensure it is on top */
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto; /* 10% from the top and centered */
+    padding: 20px;
+    border: 3px solid #ffd700; /* Gold border for a casino feel */
+    border-radius: 10px;
+    width: 80%; /* Could be adjusted */
+    max-width: 500px; /* Max size */
+    color: #333;
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* The Close Button */
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Paytable specific styling */
+.payout-table-container, .calculation-example {
+    margin: 15px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #eee;
+}
+
+.modal-content table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.modal-content th, .modal-content td {
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.modal-content th {
+    background-color: #555;
+    color: white;
+}
+
+.modal-content .win {
+    color: #28a745;
+    font-weight: bold;
+}
+
+/* Optional: Fade-in animation */
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}

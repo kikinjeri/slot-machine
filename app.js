@@ -8,11 +8,13 @@ let balance = 0;
 let bet = 0;
 
 // Optional sounds
-const spinSound = new Audio("assets/spin.mp3");
+// Ensure these paths are correct, or comment out if you don't have the files
+const spinSound = new Audio("assets/spin.mp3"); 
 const winSound = new Audio("assets/win.mp3");
 const loseSound = new Audio("assets/lose.mp3");
 
 document.addEventListener("DOMContentLoaded", () => {
+  // --- Element References ---
   const balanceEl = document.getElementById("balance");
   const betEl = document.getElementById("bet");
   const resultEl = document.getElementById("result");
@@ -20,10 +22,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const depositBtn = document.getElementById("deposit-btn");
   const playAgainBtn = document.getElementById("play-again-btn");
   const depositInput = document.getElementById("deposit");
+  
+  // Modal References
+  const paytableBtn = document.getElementById("paytable-btn");
+  const modal = document.getElementById("paytable-modal");
+  const closeBtn = document.querySelector(".close-btn");
 
   balanceEl.textContent = balance.toFixed(2);
   playAgainBtn.style.display = "none";
 
+  // --- Deposit Handler ---
   depositBtn.addEventListener("click", () => {
     const depositAmount = parseFloat(depositInput.value);
 
@@ -46,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
     resultEl.className = "win";
   });
 
+  // --- Spin Handler ---
   spinBtn.addEventListener("click", () => {
     bet = parseFloat(betEl.value);
 
@@ -91,28 +100,57 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 800);
   });
 
+  // --- Play Again Handler ---
   playAgainBtn.addEventListener("click", () => {
     resultEl.textContent = "";
     playAgainBtn.style.display = "none";
     spinBtn.style.display = "inline-block";
   });
+
+  // --- Modal Event Handlers ---
+  paytableBtn.addEventListener("click", () => {
+    modal.style.display = "block";
+  });
+
+  closeBtn.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+
+  window.addEventListener("click", (event) => {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  });
 });
 
+// ===================================================
+// --- Game Logic Functions ---
+// ===================================================
+
+/**
+ * Generates the outcome for all reels based on the symbol weights.
+ *
+ * FIX: This function uses the corrected logic: symbols are selected
+ * independently for each slot position from the full weighted pool.
+ */
 function spin() {
+  // 1. Create the full weighted symbol pool 
   const symbols = [];
   for (const [symbol, count] of Object.entries(SYMBOLS_COUNT)) {
     for (let i = 0; i < count; i++) symbols.push(symbol);
   }
 
   const reels = [];
+  // 2. Iterate through each column (reel)
   for (let i = 0; i < COLS; i++) {
     reels.push([]);
-    const reelSymbols = [...symbols];
+
+    // 3. Select symbols for the current reel's rows
     for (let j = 0; j < ROWS; j++) {
-      const randIndex = Math.floor(Math.random() * reelSymbols.length);
-      const selectedSymbol = reelSymbols[randIndex];
+      // Select a random symbol from the full weighted pool
+      const randIndex = Math.floor(Math.random() * symbols.length);
+      const selectedSymbol = symbols[randIndex];
       reels[i].push(selectedSymbol);
-      reelSymbols.splice(randIndex, 1);
     }
   }
   return reels;
@@ -131,6 +169,7 @@ function transpose(reels) {
 
 function getWinnings(rows, bet) {
   let winnings = 0;
+  // Check for winning lines in each row
   for (let row = 0; row < ROWS; row++) {
     const symbols = rows[row];
     const allSame = symbols.every((s) => s === symbols[0]);
@@ -145,11 +184,11 @@ function displaySlots(rows) {
 
   for (let row = 0; row < ROWS; row++) {
     for (let col = 0; col < COLS; col++) {
-      const reel = document.getElementById(`reel-${col + 1}`);
+      const reel = document.getElementById(`reel-${col + 1}`); 
       const symbolEl = document.createElement("div");
       symbolEl.textContent = rows[row][col];
       symbolEl.classList.add("symbol");
-      symbolEl.style.animationDelay = `${row * 0.2}s`;
+      symbolEl.style.animationDelay = `${row * 0.2}s`; 
       reel.appendChild(symbolEl);
     }
   }
